@@ -1,0 +1,35 @@
+---
+# Lavi colorscheme
+# by Maddison Hellstrom (https://github.com/b0o)
+
+# prettier-ignore
+colors: # yamllint disable rule:colons rule:comments
+  primary:
+    background:        "#463E57"
+    foreground:        "#FFF1E0"
+    dim_foreground:    "#B5A593"
+    bright_foreground: "#FFFFFF"
+  cursor:
+    text:              "#463E57"
+    cursor:            "#FFFFFF"
+  selection:
+    text:              "#000000"
+    background:        "#FFFFFF"
+  normal:
+    black:             "#2F2A38"
+    red:               "#FF87A5"
+    green:             "#6EEB84"
+    yellow:            "#FFD080"
+    blue:              "#80BDFF"
+    magenta:           "#B891FF"
+    cyan:              "#3FC4C4"
+    white:             "#EEE6FF"
+  bright:
+    black:             "#8977A8"
+    red:               "#F2637E"
+    green:             "#AFFF61"
+    yellow:            "#FFDF61"
+    blue:              "#7583FF"
+    magenta:           "#B98AFF"
+    cyan:              "#2BEDC0"
+    white:             "#FFFFFF"

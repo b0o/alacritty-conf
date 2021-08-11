@@ -1,0 +1,7 @@
+---
+_import: !()
+  - !? $import('base.yml')
+  - !? $import('themes/base16-atelier-estuary-light.yml')
+
+env:
+  VIM_COLORSCHEME: "base16-atelier-estuary-light"

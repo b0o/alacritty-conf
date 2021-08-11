@@ -1,0 +1,35 @@
+---
+# Fullnight colorscheme
+# by Maddison Hellstrom (https://github.com/b0o)
+
+# prettier-ignore
+colors: # yamllint disable rule:colons rule:comments
+  primary:
+    foreground:        "#F1EFF8"
+    background:        "#383A62"
+    dim_foreground:    "#B5A593"
+    bright_foreground: "#FFFFFF"
+  cursor:
+    text:              "#463E57"
+    cursor:            "#F1EFF8"
+  selection:
+    text:              "#000000"
+    background:        "#FFFFFF"
+  normal:
+    black:             "#292A44"
+    red:               "#CB4B16"
+    green:             "#2DE0A7"
+    yellow:            "#EFE4A1"
+    blue:              "#8EAEE0"
+    magenta:           "#B891FF"
+    cyan:              "#CCCCFF"
+    white:             "#DCDCE8"
+  bright:
+    black:             "#A0A0C5"
+    red:               "#FF79C6"
+    green:             "#23CBE2"
+    yellow:            "#666699"
+    blue:              "#847AFF"
+    magenta:           "#AE81FF"
+    cyan:              "#6DFEDF"
+    white:             "#F1EFF8"

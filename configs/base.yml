@@ -1,0 +1,409 @@
+---
+env:
+  TERM: xterm-256color
+
+shell:
+  program: /usr/bin/env
+  args:
+    - zsh
+    - -c
+    - tmux new-session -e "COLORSCHEME=${COLORSCHEME:-lavi}"
+
+window:
+  # Window padding (changes require restart)
+  # Blank space added around the window in pixels. This padding is scaled
+  # by DPI and the specified value is always added at both opposing sides.
+  padding:
+    x: 4
+    y: 4
+
+  # Spread additional padding evenly around the terminal content.
+  dynamic_padding: true
+
+  # Allow terminal applications to change Alacritty's window title.
+  dynamic_title: true
+
+scrolling:
+  # Maximum number of lines in the scrollback buffer.
+  # Specifying '0' will disable scrolling.
+  history: 50000
+
+  # Number of lines the viewport will move for every line scrolled when
+  # scrollback is enabled (history > 0).
+  multiplier: 3
+
+# Font configuration (changes require restart)
+font:
+  # family: InputMono Nerd Font
+  normal:
+    # family: InputMono Nerd Font
+    # family: Inconsolata
+    # family: VictorMono Nerd Font
+    family: Sudo
+    # family:
+
+  size: 11.0
+
+  # Offset is the extra space around each character.
+  # `offset.y` can be thought of as modifying the line spacing
+  # `offset.x` can be thought of as modifying the letter spacing
+  offset:
+    # x: -2
+    x: 0
+    y: -2
+
+  # Glyph offset determines the locations of the glyphs within their cells with
+  # the default being at the bottom.
+  # Increasing `x` moves the glyph to the right
+  # Increasing `y` moves the glyph upwards
+  glyph_offset:
+    x: 0
+    y: 0
+
+# If `true`, bold text is drawn using the bright color variants.
+draw_bold_text_with_bright_colors: true
+
+# Visual Bell
+#
+# Values for `animation`:
+#   - Ease
+#   - EaseOut
+#   - EaseOutSine
+#   - EaseOutQuad
+#   - EaseOutCubic
+#   - EaseOutQuart
+#   - EaseOutQuint
+#   - EaseOutExpo
+#   - EaseOutCirc
+#   - Linear
+bell:
+  animation: EaseOut
+  duration: 170
+  color: "#ccb0ff"
+
+# Mouse bindings
+#
+# Available fields:
+#   - mouse
+#   - action
+#   - mods (optional)
+#
+# Values for `mouse`:
+#   - Middle
+#   - Left
+#   - Right
+#   - Numeric identifier such as `5`
+#
+# All available `mods` and `action` values are documented in the key binding
+# section.
+mouse_bindings:
+  - {mouse: Middle, action: PasteSelection}
+
+mouse:
+  # Click settings
+  #
+  # The `double_click` and `triple_click` settings control the time
+  # alacritty should wait for accepting multiple clicks as one double
+  # or triple click.
+  double_click: {threshold: 300}
+  triple_click: {threshold: 300}
+
+  # If this is `true`, the cursor is temporarily hidden when typing.
+  hide_when_typing: true
+
+hints:
+  enabled:
+    - regex: "(mailto:|gemini:|gopher:|https:|http:|news:|file:|git:|ssh:|ftp:)\
+        [^\u0000-\u001F\u007F-\u009F<>\" {-}\\^⟨⟩`]+"
+      command: xdg-open
+      post_processing: true
+      mouse:
+        enabled: true
+        mods: Control
+      binding:
+        key: U
+        mods: Control|Shift
+
+selection:
+  semantic_escape_chars: ',│`|:"'' ()[]{}<>'
+
+  # When set to `true`, selected text will be copied to the primary clipboard.
+  save_to_clipboard: false
+
+cursor:
+  # Cursor style
+  # Values for `style`:
+  #   - ▇ Block
+  #   - _ Underline
+  #   - | Beam
+  style: Beam
+  vi_mode_style: Block
+
+  # If this is `true`, the cursor will be rendered as a hollow box when the
+  # window is not focused.
+  unfocused_hollow: true
+
+# Live config reload (changes require restart)
+live_config_reload: true
+
+# Startup directory
+# Directory the shell is started in. If this is unset, or `None`, the working
+# directory of the parent process will be used.
+working_directory: None
+
+# Send ESC (\x1b) before characters when alt is pressed.
+alt_send_esc: true
+
+debug:
+  # Display the time it takes to redraw each frame.
+  render_timer: false
+
+  # Keep the log file after quitting Alacritty.
+  persistent_logging: false
+
+  # Log level
+  #
+  # Values for `log_level`:
+  #   - None
+  #   - Error
+  #   - Warn
+  #   - Info
+  #   - Debug
+  #   - Trace
+  log_level: Warn
+
+  # Print all received window events.
+  print_events: false
+
+  # Record all characters and escape sequences as test data.
+  ref_test: false
+
+# prettier-ignore
+key_bindings: # yamllint disable rule:braces rule:comments rule:commas rule:line-length
+  # view {{{
+  - { key: Key0,         mods: Control,           action: ResetFontSize                    }
+  - { key: Equals,       mods: Control,           action: IncreaseFontSize                 }
+  - { key: Plus,         mods: Control,           action: IncreaseFontSize                 }
+  - { key: Minus,        mods: Control,           action: DecreaseFontSize                 }
+  - { key: L,            mods: Control,           action: ClearLogNotice                   }
+  - { key: L,            mods: Control,           chars: "\x0c"                            }
+  # }}}
+  # clipboard {{{
+  - { key: V,            mods: Alt,               action: Paste                            }
+  - { key: C,            mods: Alt,               action: Copy                             }
+  - { key: Paste,                                 action: Paste                            }
+  - { key: Copy,                                  action: Copy                             }
+  # }}}
+  # look around {{{
+  - { key: PageUp,                                action: ScrollLineUp                     }
+  - { key: PageUp,       mods: Shift,             action: ScrollPageUp,   mode: ~Alt       }
+  - { key: PageUp,       mods: Control|Shift,     action: ScrollToTop,    mode: ~Alt       }
+  - { key: PageDown,                              action: ScrollLineDown                   }
+  - { key: PageDown,     mods: Shift,             action: ScrollPageDown, mode: ~Alt       }
+  - { key: PageDown,     mods: Control|Shift,     action: ScrollToBottom, mode: ~Alt       }
+  # }}}
+  # Special combos {{{
+  # for FXX key codes, see: http://aperiodic.net/phil/archives/Geekery/term-function-keys.html
+  - { key: Return,       mods: Control,           chars: "\x1b[24~"                        } # F12
+  - { key: Return,       mods: Alt,               chars: "\x1b[25~"                        } # F13
+  - { key: Tab,          mods: Alt|Shift,         chars: "\x1b[23;5~"                      } # F35
+  - { key: Comma,        mods: Control,           chars: "\x1b[21;5~"                      } # F34
+  - { key: J,            mods: Control|Alt|Shift, chars: "\x1b[20;5~"                      } # F33
+  - { key: K,            mods: Control|Alt|Shift, chars: "\x1b[19;5~"                      } # F32
+  - { key: J,            mods: Control|Shift,     chars: "\x1b[18;5~"                      } # F31
+  - { key: K,            mods: Control|Shift,     chars: "\x1b[17;5~"                      } # F30
+  - { key: Q,            mods: Control|Shift,     chars: "\x1b[15;5~"                      } # F29
+
+  # Tmux
+  - { key: LBracket,     mods: Alt|Control,       chars: "\u00a0"                          }
+  - { key: RBracket,     mods: Alt|Control,       chars: "\u00a1"                          }
+  - { key: 26,           mods: Alt|Control|Shift, chars: "\u00a2"                          } # 26 = LBracket
+  - { key: 27,           mods: Alt|Control|Shift, chars: "\u00a3"                          } # 27 = RBracket
+  - { key: Apostrophe,   mods: Alt|Control,       chars: "\u00a8"                          }
+  - { key: Semicolon,    mods: Alt|Control,       chars: "\u00a9"                          }
+  - { key: 40,           mods: Alt|Control|Shift, chars: "\u00b0"                          } # 40 = Double Quote
+  - { key: Colon,        mods: Alt|Control|Shift, chars: "\u00b1"                          }
+  - { key: Return,       mods: Alt|Control,       chars: "\u00b2"                          }
+  - { key: Key1,         mods: Alt|Control,       chars: "\u00c1"                          }
+  - { key: Key2,         mods: Alt|Control,       chars: "\u00c2"                          }
+  - { key: Key3,         mods: Alt|Control,       chars: "\u00c3"                          }
+  - { key: Key4,         mods: Alt|Control,       chars: "\u00c4"                          }
+  - { key: Key5,         mods: Alt|Control,       chars: "\u00c5"                          }
+  - { key: Key6,         mods: Alt|Control,       chars: "\u00c6"                          }
+  - { key: Key7,         mods: Alt|Control,       chars: "\u00c7"                          }
+  - { key: Key8,         mods: Alt|Control,       chars: "\u00c8"                          }
+  - { key: Key9,         mods: Alt|Control,       chars: "\u00c9"                          }
+
+  # - { key: N,        mods: Control|Shift,     chars: "\x1b[24;2~"                      } # F28
+  # - { key: bracketleft, mods: Control|Shift,     chars: "\uE000"                      } # F28
+  # - { key: RBracket, mods: Control,           chars: "E000"                          }
+  # }}}
+  # Compatibility {{{
+  # - { key: Space,    mods: Alt,               chars: "^[ "                             }
+  # - { key: Space,    mods: Control,           chars: "^ "                              } # TODO
+  # - { key: Space,    mods: Control,           chars: "foo"                            } # TODO
+  # - { key: Space,    mods: Alt,               chars: "bar"                            } # TODO
+  # - { key: Z,    mods: Alt,               chars: "bar"                            } # TODO
+  - { key: Home,     mods: Alt,               chars: "\x1b[1;3H"                       }
+  - { key: Home,                              chars: "\x1bOH",        mode: AppCursor  }
+  - { key: Home,                              chars: "\x1b[H",        mode: ~AppCursor }
+  - { key: End,      mods: Alt,               chars: "\x1b[1;3F"                       }
+  - { key: End,                               chars: "\x1bOF",        mode: AppCursor  }
+  - { key: End,                               chars: "\x1b[F",        mode: ~AppCursor }
+  - { key: PageUp,   mods: Shift,             chars: "\x1b[5;2~",     mode: Alt        }
+  - { key: PageUp,   mods: Control,           chars: "\x1b[5;5~"                       }
+  - { key: PageUp,   mods: Alt,               chars: "\x1b[5;3~"                       }
+  - { key: PageDown, mods: Shift,             chars: "\x1b[6;2~",     mode: Alt        }
+  - { key: PageDown, mods: Control,           chars: "\x1b[6;5~"                       }
+  - { key: PageDown, mods: Alt,               chars: "\x1b[6;3~"                       }
+  - { key: Tab,      mods: Shift,             chars: "\x1b[Z"                          }
+  - { key: Back,                              chars: "\x7f"                            }
+  - { key: Back,     mods: Alt,               chars: "\x1b\x7f"                        }
+  - { key: Insert,                            chars: "\x1b[2~"                         }
+  - { key: Delete,                            chars: "\x1b[3~"                         }
+  - { key: Left,     mods: Shift,             chars: "\x1b[1;2D"                       }
+  - { key: Left,     mods: Control,           chars: "\x1b[1;5D"                       }
+  - { key: Left,     mods: Alt,               chars: "\x1b[1;3D"                       }
+  - { key: Left,                              chars: "\x1b[D",        mode: ~AppCursor }
+  - { key: Left,                              chars: "\x1bOD",        mode: AppCursor  }
+  - { key: Right,    mods: Shift,             chars: "\x1b[1;2C"                       }
+  - { key: Right,    mods: Control,           chars: "\x1b[1;5C"                       }
+  - { key: Right,    mods: Alt,               chars: "\x1b[1;3C"                       }
+  - { key: Right,                             chars: "\x1b[C",        mode: ~AppCursor }
+  - { key: Right,                             chars: "\x1bOC",        mode: AppCursor  }
+  - { key: Up,       mods: Shift,             chars: "\x1b[1;2A"                       }
+  - { key: Up,       mods: Control,           chars: "\x1b[1;5A"                       }
+  - { key: Up,       mods: Alt,               chars: "\x1b[1;3A"                       }
+  - { key: Up,                                chars: "\x1b[A",        mode: ~AppCursor }
+  - { key: Up,                                chars: "\x1bOA",        mode: AppCursor  }
+  - { key: Down,     mods: Shift,             chars: "\x1b[1;2B"                       }
+  - { key: Down,     mods: Control,           chars: "\x1b[1;5B"                       }
+  - { key: Down,     mods: Alt,               chars: "\x1b[1;3B"                       }
+  - { key: Down,                              chars: "\x1b[B",        mode: ~AppCursor }
+  - { key: Down,                              chars: "\x1bOB",        mode: AppCursor  }
+  - { key: F1,                                chars: "\x1bOP"                          }
+  - { key: F2,                                chars: "\x1bOQ"                          }
+  - { key: F3,                                chars: "\x1bOR"                          }
+  - { key: F4,                                chars: "\x1bOS"                          }
+  - { key: F5,                                chars: "\x1b[15~"                        }
+  - { key: F6,                                chars: "\x1b[17~"                        }
+  - { key: F7,                                chars: "\x1b[18~"                        }
+  - { key: F8,                                chars: "\x1b[19~"                        }
+  - { key: F9,                                chars: "\x1b[20~"                        }
+  - { key: F10,                               chars: "\x1b[21~"                        }
+  - { key: F11,                               chars: "\x1b[23~"                        }
+  - { key: F12,                               chars: "\x1b[24~"                        }
+  - { key: F1,       mods: Shift,             chars: "\x1b[1;2P"                       }
+  - { key: F2,       mods: Shift,             chars: "\x1b[1;2Q"                       }
+  - { key: F3,       mods: Shift,             chars: "\x1b[1;2R"                       }
+  - { key: F4,       mods: Shift,             chars: "\x1b[1;2S"                       }
+  - { key: F5,       mods: Shift,             chars: "\x1b[15;2~"                      }
+  - { key: F6,       mods: Shift,             chars: "\x1b[17;2~"                      }
+  - { key: F7,       mods: Shift,             chars: "\x1b[18;2~"                      }
+  - { key: F8,       mods: Shift,             chars: "\x1b[19;2~"                      }
+  - { key: F9,       mods: Shift,             chars: "\x1b[20;2~"                      }
+  - { key: F10,      mods: Shift,             chars: "\x1b[21;2~"                      }
+  - { key: F11,      mods: Shift,             chars: "\x1b[23;2~"                      }
+  - { key: F12,      mods: Shift,             chars: "\x1b[24;2~"                      }
+  - { key: F1,       mods: Control,           chars: "\x1b[1;5P"                       }
+  - { key: F2,       mods: Control,           chars: "\x1b[1;5Q"                       }
+  - { key: F3,       mods: Control,           chars: "\x1b[1;5R"                       }
+  - { key: F4,       mods: Control,           chars: "\x1b[1;5S"                       }
+  - { key: F5,       mods: Control,           chars: "\x1b[15;5~"                      }
+  - { key: F6,       mods: Control,           chars: "\x1b[17;5~"                      }
+  - { key: F7,       mods: Control,           chars: "\x1b[18;5~"                      }
+  - { key: F8,       mods: Control,           chars: "\x1b[19;5~"                      }
+  - { key: F9,       mods: Control,           chars: "\x1b[20;5~"                      }
+  - { key: F10,      mods: Control,           chars: "\x1b[21;5~"                      }
+  - { key: F11,      mods: Control,           chars: "\x1b[23;5~"                      }
+  - { key: F12,      mods: Control,           chars: "\x1b[24;5~"                      }
+  - { key: F1,       mods: Alt,               chars: "\x1b[1;6P"                       }
+  - { key: F2,       mods: Alt,               chars: "\x1b[1;6Q"                       }
+  - { key: F3,       mods: Alt,               chars: "\x1b[1;6R"                       }
+  - { key: F4,       mods: Alt,               chars: "\x1b[1;6S"                       }
+  - { key: F5,       mods: Alt,               chars: "\x1b[15;6~"                      }
+  - { key: F6,       mods: Alt,               chars: "\x1b[17;6~"                      }
+  - { key: F7,       mods: Alt,               chars: "\x1b[18;6~"                      }
+  - { key: F8,       mods: Alt,               chars: "\x1b[19;6~"                      }
+  - { key: F9,       mods: Alt,               chars: "\x1b[20;6~"                      }
+  - { key: F10,      mods: Alt,               chars: "\x1b[21;6~"                      }
+  - { key: F11,      mods: Alt,               chars: "\x1b[23;6~"                      }
+  - { key: F12,      mods: Alt,               chars: "\x1b[24;6~"                      }
+  - { key: NumpadEnter,                       chars: "\n"                              }
+  # }}}
+  # Vi Mode {{{
+  - { key: Space,    mods: Control|Alt,       action: ToggleViMode                      }
+  # "How the f#!k do I exit vim?!" {{{
+  - { key: I,                                 action: ScrollToBottom,          mode: Vi }
+  - { key: I,                                 action: ToggleViMode,            mode: Vi }
+  - { key: Q,        mods: Shift,             action: ScrollToBottom,          mode: Vi }
+  - { key: Q,        mods: Shift,             action: ToggleViMode,            mode: Vi }
+  - { key: C,        mods: Control,           action: ScrollToBottom,          mode: Vi }
+  - { key: C,        mods: Control,           action: ToggleViMode,            mode: Vi }
+  # }}}
+  # look around {{{
+  - { key: Space,    mods: Shift|Control,     action: ScrollToBottom,          mode: Vi }
+  - { key: Y,        mods: Control,           action: ScrollLineUp,            mode: Vi }
+  - { key: E,        mods: Control,           action: ScrollLineDown,          mode: Vi }
+  - { key: G,                                 action: ScrollToTop,             mode: Vi }
+  - { key: G,        mods: Shift,             action: ScrollToBottom,          mode: Vi }
+  - { key: B,        mods: Control,           action: ScrollPageUp,            mode: Vi }
+  - { key: F,        mods: Control,           action: ScrollPageDown,          mode: Vi }
+  - { key: U,        mods: Control,           action: ScrollHalfPageUp,        mode: Vi }
+  - { key: D,        mods: Control,           action: ScrollHalfPageDown,      mode: Vi }
+  - { key: PageUp,                            action: ScrollHalfPageUp,        mode: Vi }
+  - { key: PageDown,                          action: ScrollHalfPageDown,      mode: Vi }
+  - { key: PageUp,   mods: Shift,             action: ScrollPageUp,            mode: Vi }
+  - { key: PageDown, mods: Shift,             action: ScrollPageDown,          mode: Vi }
+  # }}}
+  # move around {{{
+  - { key: H,                                 action: Left,                    mode: Vi }
+  - { key: J,                                 action: Down,                    mode: Vi }
+  - { key: K,                                 action: Up,                      mode: Vi }
+  - { key: L,                                 action: Right,                   mode: Vi }
+  # Shift+K - go up 5 lines {{{
+  - { key: K,        mods: Shift,             action: Up,                      mode: Vi }
+  - { key: K,        mods: Shift,             action: Up,                      mode: Vi }
+  - { key: K,        mods: Shift,             action: Up,                      mode: Vi }
+  - { key: K,        mods: Shift,             action: Up,                      mode: Vi }
+  - { key: K,        mods: Shift,             action: Up,                      mode: Vi }
+  # }}}
+  # Shift+J - go down 5 lines {{{
+  - { key: J,        mods: Shift,             action: Down,                    mode: Vi }
+  - { key: J,        mods: Shift,             action: Down,                    mode: Vi }
+  - { key: J,        mods: Shift,             action: Down,                    mode: Vi }
+  - { key: J,        mods: Shift,             action: Down,                    mode: Vi }
+  - { key: J,        mods: Shift,             action: Down,                    mode: Vi }
+  # }}}
+  - { key: Up,                                action: Up,                      mode: Vi }
+  - { key: Down,                              action: Down,                    mode: Vi }
+  - { key: Left,                              action: Left,                    mode: Vi }
+  - { key: Right,                             action: Right,                   mode: Vi }
+  - { key: Key0,                              action: First,                   mode: Vi }
+  - { key: Key4,     mods: Shift,             action: Last,                    mode: Vi }
+  - { key: Key6,     mods: Shift,             action: FirstOccupied,           mode: Vi }
+  - { key: H,        mods: Shift,             action: High,                    mode: Vi }
+  - { key: M,        mods: Shift,             action: Middle,                  mode: Vi }
+  - { key: L,        mods: Shift,             action: Low,                     mode: Vi }
+  - { key: B,                                 action: SemanticLeft,            mode: Vi }
+  - { key: W,                                 action: SemanticRight,           mode: Vi }
+  - { key: E,                                 action: SemanticRightEnd,        mode: Vi }
+  - { key: B,        mods: Shift,             action: WordLeft,                mode: Vi }
+  - { key: W,        mods: Shift,             action: WordRight,               mode: Vi }
+  - { key: E,        mods: Shift,             action: WordRightEnd,            mode: Vi }
+  - { key: Key5,     mods: Shift,             action: Bracket,                 mode: Vi }
+  # }}}
+  # select text {{{
+  - { key: Escape,                            action: ClearSelection,          mode: Vi }
+  - { key: V,                                 action: ToggleNormalSelection,   mode: Vi }
+  - { key: V,        mods: Shift,             action: ToggleLineSelection,     mode: Vi }
+  - { key: V,        mods: Control,           action: ToggleBlockSelection,    mode: Vi }
+  - { key: V,        mods: Alt,               action: ToggleSemanticSelection, mode: Vi }
+  # }}}
+  # do stuff with selections {{{
+  - { key: Y,                                 action: Copy,                    mode: Vi }
+  - { key: Return,                            action: Open,                    mode: Vi }
+  # }}}
+
+  # }}}
+# vim: set foldlevel=2:

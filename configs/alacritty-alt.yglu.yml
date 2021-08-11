@@ -1,0 +1,7 @@
+---
+_import: !()
+  - !? $import('base.yml')
+  - !? $import('themes/base16-material-palenight-256.yml')
+
+env:
+  VIM_COLORSCHEME: "base16-material-palenight"

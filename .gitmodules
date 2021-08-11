@@ -1,0 +1,3 @@
+[submodule "themes/base16-alacritty"]
+	path = themes/base16-alacritty
+	url = git://github.com/aaron-williamson/base16-alacritty.git

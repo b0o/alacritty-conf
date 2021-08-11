@@ -1,0 +1,15 @@
+---
+_import: !()
+  - !? $import('base.yml')
+  - !? $import('themes/fullnight.yml')
+
+# No Ligature support yet :(
+#
+# font:
+#   normal:
+#     family: Input Mono Ligature Nerd Font
+
+# prettier-ignore
+key_bindings: # yamllint disable rule:braces rule:comments rule:commas rule:line-length
+  - { key: M,        mods: Control,       chars: "\x1b[20;5~"                      } # F33
+  - { key: M,        mods: Control|Alt,   chars: "\x1b[19;5~"                      } # F32

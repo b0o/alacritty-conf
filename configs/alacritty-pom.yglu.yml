@@ -1,0 +1,26 @@
+---
+_import: !()
+  - !? $import('base.yml')
+  - !? $import('themes/base16-greenscreen-256.yml')
+
+window:
+  padding:
+    x: 20
+    y: 20
+
+font:
+  size: 20.0
+
+shell:
+  program: /usr/bin/zsh
+  args:
+    - -i
+    - -c
+    - 'while true; do
+        clear;
+        echo "Press any key to start a Pomodoro";
+        read -srk1;
+        clear;
+        pomodoro;
+        clear;
+      done'
