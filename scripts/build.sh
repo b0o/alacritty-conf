@@ -20,7 +20,7 @@ declare -a args=()
 while read -r config; do
   config_name="$(basename "$config")"
   cp "$config" "$config_name"
-  if [[ "$config_name" =~ \.yglu\.yml$ ]]; then
+  if [[ "$config_name" =~ \.yglu\.ya?ml$ ]]; then
     args+=("$config_name" "$basedir/build/configs/$(sed -E 's/\.yglu\.ya?ml$/.yml/' <<< "$(basename "$config")")")
   fi
 done < <(
