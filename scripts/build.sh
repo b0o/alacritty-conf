@@ -25,7 +25,7 @@ while read -r config; do
   fi
 done < <(
   if [[ $# -eq 0 ]]; then
-    find "$basedir/configs" -type f #-regex '.*\.yglu\.ya?ml$'
+    find "$basedir/configs" -type f
   else
     printf "$basedir/configs/%s.yglu.yml\n" "$@"
   fi
