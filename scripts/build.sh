@@ -27,6 +27,7 @@ done < <(
   if [[ $# -eq 0 ]]; then
     find "$basedir/configs" -type f
   else
+    echo "$basedir/configs/base.yml" # TODO: this is hacky
     printf "$basedir/configs/%s.yglu.yml\n" "$@"
   fi
 )
