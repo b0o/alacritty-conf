@@ -1,4 +1,4 @@
-.PHONY: all init update build clean install install-clobber
+.PHONY: all init update build clean install install-clobber watch
 .DEFAULT_TARGET: build
 
 CONFIG_DIR = $(XDG_CONFIG_HOME)/alacritty
@@ -28,3 +28,6 @@ install: build/configs
 install-clobber: build/configs
 	mkdir -p $(CONFIG_DIR)
 	cp ./build/configs/*.yml $(CONFIG_DIR)
+
+watch: init
+	./scripts/watch.sh
