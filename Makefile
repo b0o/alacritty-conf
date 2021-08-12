@@ -31,3 +31,6 @@ install-clobber: build/configs
 
 watch: init
 	./scripts/watch.sh
+
+watch-install: init
+	./scripts/watch.sh make install-clobber
