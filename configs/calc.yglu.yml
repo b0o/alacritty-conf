@@ -1,4 +1,6 @@
 ---
+_merge_skip: !-
+  - shell
 _import: !()
   - !? $import('base.yml')
   - !? $import('themes/base16-material-palenight-256.yml')
