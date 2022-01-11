@@ -1,36 +1,26 @@
-.PHONY: all init update build clean install install-clobber watch
+.PHONY: init update build clean install install-clobber
 .DEFAULT_TARGET: build
 
-CONFIG_DIR = $(XDG_CONFIG_HOME)/alacritty
+INSTALL_DIR = $(XDG_CONFIG_HOME)/alacritty
 
-init:
-	git submodule update --init --recursive --no-fetch
+src/themes/base16-alacritty:
+	git submodule update --init --recursive --no-fetch src/themes/base16-alacritty
+
+init: src/themes/base16-alacritty
 
 update: init
 	git submodule update --recursive
 
-build/themes:
-	./scripts/gen-themes.sh
-
-build/configs: build/themes
-	./scripts/build.sh
-
-build: init build/themes
+build: init
 	./scripts/build.sh
 
 clean:
 	rm -rf ./build
 
-install: build/configs
-	mkdir -p $(CONFIG_DIR)
-	cp --no-clobber --interactive ./build/configs/*.yml $(CONFIG_DIR)
+install: build
+	mkdir -p $(INSTALL_DIR)
+	cp --no-clobber --interactive ./build/*.yml $(INSTALL_DIR)
 
-install-clobber: build/configs
-	mkdir -p $(CONFIG_DIR)
-	cp ./build/configs/*.yml $(CONFIG_DIR)
-
-watch: init
-	./scripts/watch.sh
-
-watch-install: init
-	./scripts/watch.sh make install-clobber
+install-clobber: build
+	mkdir -p $(INSTALL_DIR)
+	cp ./build/*.yml $(INSTALL_DIR)

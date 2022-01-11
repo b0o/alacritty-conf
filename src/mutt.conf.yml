@@ -1,7 +1,7 @@
 ---
-_import: !()
-  - !? $import('base.yml')
-  - !? $import('themes/fullnight.yml')
+\{import}:
+  - base
+  - themes/b0o/fullnight
 
 # No Ligature support yet :(
 #

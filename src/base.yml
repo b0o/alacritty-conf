@@ -36,13 +36,9 @@ scrolling:
 font:
   # family: InputMono Nerd Font
   normal:
-    # family: InputMono Nerd Font
-    # family: Inconsolata
-    # family: VictorMono Nerd Font
-    family: Sudo
-    # family:
+    family: Sudo Nerd Font Mono
 
-  size: 16.0
+  size: 12
 
   # Offset is the extra space around each character.
   # `offset.y` can be thought of as modifying the line spacing
@@ -212,13 +208,21 @@ key_bindings: # yamllint disable rule:braces rule:comments rule:commas rule:line
   - { key: K,            mods: Control|Alt|Shift, chars: "\x1b[19;5~"                      } # F32
   - { key: J,            mods: Control|Shift,     chars: "\x1b[18;5~"                      } # F31
   - { key: K,            mods: Control|Shift,     chars: "\x1b[17;5~"                      } # F30
-  - { key: Q,            mods: Control|Shift,     chars: "\x1b[15;5~"                      } # F29
+  - { key: U,            mods: Control|Shift,     chars: "\x1b[24;2~"                      } # F24
+  # - { key: N,            mods: Control|Shift,     chars: "\x1b[14;5~"                      } # F28
+
+  - { key: N,            mods: Control|Shift,     chars: "\uff00"                          }
+  - { key: Q,            mods: Control|Shift,     chars: "\uff01"                          }
 
   # Tmux
   - { key: LBracket,     mods: Alt|Control,       chars: "\u00a0"                          }
   - { key: RBracket,     mods: Alt|Control,       chars: "\u00a1"                          }
   - { key: 26,           mods: Alt|Control|Shift, chars: "\u00a2"                          } # 26 = LBracket
   - { key: 27,           mods: Alt|Control|Shift, chars: "\u00a3"                          } # 27 = RBracket
+  - { key: H,            mods: Control|Alt|Shift, chars: "\u00a4"                          }
+  - { key: J,            mods: Control|Alt|Shift, chars: "\u00a5"                          }
+  - { key: K,            mods: Control|Alt|Shift, chars: "\u00a6"                          }
+  - { key: L,            mods: Control|Alt|Shift, chars: "\u00a7"                          }
   - { key: Apostrophe,   mods: Alt|Control,       chars: "\u00a8"                          }
   - { key: Semicolon,    mods: Alt|Control,       chars: "\u00a9"                          }
   - { key: 40,           mods: Alt|Control|Shift, chars: "\u00b0"                          } # 40 = Double Quote

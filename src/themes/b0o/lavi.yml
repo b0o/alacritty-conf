@@ -5,12 +5,12 @@
 # prettier-ignore
 colors: # yamllint disable rule:colons rule:comments
   primary:
-    background:        "#463E57"
+    background:        "#252137"
     foreground:        "#FFF1E0"
     dim_foreground:    "#B5A593"
     bright_foreground: "#FFFFFF"
   cursor:
-    text:              "#463E57"
+    text:              "#252137"
     cursor:            "#FFFFFF"
   selection:
     text:              "#000000"

@@ -5,8 +5,8 @@ Maddison's [Alacritty](https://github.com/alacritty/alacritty) configuration!
 #### Prerequisites
 
 - GNU Make
-- [Yglu](https://github.com/lbovet/yglu)
-- [yglu-overlay](https://github.com/b0o/yglu-overlay)
+- [jq](https://github.com/stedolan/jq)
+- [yq](https://github.com/mikefarah/yq)
 
 #### Build & Install
 

@@ -1,0 +1,20 @@
+---
+\{import}:
+  - base
+  - themes/base16-alacritty/colors/base16-material-palenight-256
+
+\{overlay}:
+  - shell:
+      program: /usr/bin/zsh
+      args:
+        - -i
+        - -c
+        - iqalc
+
+window:
+  padding:
+    x: 20
+    y: 20
+
+font:
+  size: 20.0

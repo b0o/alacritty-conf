@@ -1,0 +1,27 @@
+---
+\{import}:
+  - base
+  - themes/base16-alacritty/colors/base16-greenscreen-256
+
+\{overlay}:
+  - shell:
+      program: /usr/bin/zsh
+      args:
+        - -i
+        - -c
+        - while true; do
+          clear;
+          echo "Press any key to start a Pomodoro";
+          read -srk1;
+          clear;
+          pomodoro;
+          clear;
+          done
+
+window:
+  padding:
+    x: 20
+    y: 20
+
+font:
+  size: 20.0

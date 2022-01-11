@@ -1,0 +1,4 @@
+---
+\{import}:
+  - base
+  - themes/base16-alacritty/colors/base16-material-palenight-256
