@@ -57,7 +57,7 @@ function json_to_yaml() {
 
 function extend() {
   local extend="$1"
-  jq --argjson extend "$(yq eval -o json <<<"$extend")" '
+  jq --argjson extend "$(yq <<<"$extend")" '
     def types($vals):
       .
       | $vals
@@ -106,7 +106,7 @@ function overlay() {
 
 function convert() {
   local res
-  res="$(yq eval -o json)"
+  res="$(yq)"
 
   local -a imports
   mapfile -t imports < <(jq -cr '."\\{import}" // [] | .[]' <<<"$res")
