@@ -3,11 +3,13 @@
   - base
   - themes/b0o/fullnight
 
-# No Ligature support yet :(
-#
-# font:
-#   normal:
-#     family: Input Mono Ligature Nerd Font
+\{overlay}:
+  - shell:
+      program: /usr/bin/zsh
+      args:
+        - -i
+        - -c
+        - tmux attach-session -t mail || tmux new-session -s mail -n mutt 'tmux new-window -d "newsboat"; mutt'
 
 # prettier-ignore
 key_bindings: # yamllint disable rule:braces rule:comments rule:commas rule:line-length

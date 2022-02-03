@@ -206,8 +206,8 @@ key_bindings: # yamllint disable rule:braces rule:comments rule:commas rule:line
   - { key: Comma,        mods: Control,           chars: "\x1b[21;5~"                      } # F34
   - { key: J,            mods: Control|Alt|Shift, chars: "\x1b[20;5~"                      } # F33
   - { key: K,            mods: Control|Alt|Shift, chars: "\x1b[19;5~"                      } # F32
-  - { key: J,            mods: Control|Shift,     chars: "\x1b[18;5~"                      } # F31
-  - { key: K,            mods: Control|Shift,     chars: "\x1b[17;5~"                      } # F30
+  # - { key: J,            mods: Control|Shift,     chars: "\x1b[18;5~"                      } # F31
+  # - { key: K,            mods: Control|Shift,     chars: "\x3b[17;5~"                      } # F30
   - { key: U,            mods: Control|Shift,     chars: "\x1b[24;2~"                      } # F24
   # - { key: N,            mods: Control|Shift,     chars: "\x1b[14;5~"                      } # F28
 
@@ -237,6 +237,15 @@ key_bindings: # yamllint disable rule:braces rule:comments rule:commas rule:line
   - { key: Key7,         mods: Alt|Control,       chars: "\u00c7"                          }
   - { key: Key8,         mods: Alt|Control,       chars: "\u00c8"                          }
   - { key: Key9,         mods: Alt|Control,       chars: "\u00c9"                          }
+  - { key: H,            mods: Control|Shift,     chars: "\u00d0"                          }
+  - { key: J,            mods: Control|Shift,     chars: "\u00d1"                          }
+  - { key: K,            mods: Control|Shift,     chars: "\u00d2"                          }
+  - { key: L,            mods: Control|Shift,     chars: "\u00d3"                          }
+
+  # Vim
+  - { key: Backslash,    mods: Control,           chars: "\u00f0"                          }
+  - { key: 43,           mods: Control|Shift,     chars: "\u00f1"                          }
+  - { key: 43,           mods: Alt|Shift,         chars: "\u00f2"                          }
 
   # - { key: N,        mods: Control|Shift,     chars: "\x1b[24;2~"                      } # F28
   # - { key: bracketleft, mods: Control|Shift,     chars: "\uE000"                      } # F28
